@@ -21,11 +21,18 @@ namespace ClientSOAP
             MathsOperationsClient client2 = new MathsOperationsClient("MathsBis");
             Console.WriteLine(client2.Add(100, 101));
             Console.WriteLine(client2.Multiply(10, 15));
+            try { 
+                Console.WriteLine(client2.Divide(10, 0));
+            } catch (FaultException ex)
+            {
+                Console.WriteLine(ex.Reason);
+            }
 
             Console.WriteLine("Client 3");
             MathsOperationsClient client3 = new MathsOperationsClient("MathsTriWShttp");
             Console.WriteLine(client3.Add(100, 101));
             Console.WriteLine(client3.Multiply(10, 15));
+           
 
             Console.ReadLine();
         }

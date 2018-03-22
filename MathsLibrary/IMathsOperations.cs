@@ -18,7 +18,20 @@ namespace MathsLibrary
         int Multiply(int num1, int num2);
 
         [OperationContract]
+        [FaultContract(typeof(CustomFaultDetails))]
         int Divide(int num1, int num2);
+    }
+
+    [DataContract]
+    class CustomFaultDetails
+    {
+        public CustomFaultDetails(string message)
+        {
+            Message = message;
+        }
+
+        [DataMember]
+        public string Message { get; set; }
     }
 
 }

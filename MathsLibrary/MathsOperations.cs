@@ -20,9 +20,11 @@ namespace MathsLibrary
 
         public int Divide(int num1, int num2)
         {
+            CustomFaultDetails ex = new CustomFaultDetails("Dividing by 0 is forbidden");
+
             if (num2 == 0)
             {
-                throw new FaultException("Divide by zero forbidden");
+                throw new FaultException<CustomFaultDetails>(ex, new FaultReason(ex.Message));
             }
             return (num1 / num2);
         }
